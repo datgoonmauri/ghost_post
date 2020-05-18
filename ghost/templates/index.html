@@ -1,0 +1,47 @@
+<style>
+    div {
+    font-family: cursive;
+    font-size: 1.5em;
+    }
+</style>
+
+
+
+<div> Ghost Post</div>
+<form action='.' method='GET'>
+    <div>Filter by:</div>
+    <select name='category'>
+        <option value='roasts'>ROASTS</option>
+        <option value='boasts'>BOASTS</option>
+        <option value='roastnboast' selected>ROASTS & BOASTS</option>
+    </select>
+    <br>
+    <label>Up or Downvotes</label>
+    <input type="checkbox" name='votes'>
+    <br>
+    <button type='submit'>Filter</button>
+</form>
+<hr>
+<div><a href="{% url 'addpost' %}">Create Boast</a></div>
+<hr>
+<div><a href="{% url 'addpost' %}">Create Roast</a></div>
+<hr>
+<br>
+<div>{{ post }}</div>
+{% if posts %}
+    {% for post in posts %}
+
+        <a href="{% url 'post' post.id %}">{{post.text}}</a>
+<br>
+            <div>
+                <h5>Upvotes: {{post.upvotes}} <br>  Downvotes: {{post.downvotes}}</h5>
+            </div>
+        <br>
+    {% endfor %}
+{% elif not posts %}
+    {% if category == 'boasts' %}
+        <h3>Boasts</h3>
+    {% elif category == 'roasts' %}
+        <h3>Roasts</h3>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,6 @@
+<h1>{{ post }}</h1>
+<p>{{ post.submission_time }}</p>
+<br>
+<body>{{ post.text }}</body>
+<p><a href="{% url 'upvote' post.id %}">UPVOTE</a></p>
+<p><a href="{% url 'downvote' post.id %}">DOWNVOTE</a></p>
